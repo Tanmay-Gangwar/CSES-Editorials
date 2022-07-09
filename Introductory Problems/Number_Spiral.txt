@@ -1,0 +1,7 @@
+For given row r and column c:
+    if c > r:
+        if c is odd: result <- c * c - r + 1;
+        otherwise: result <- (c - 1) * (c - 1) + r;
+    otherwise:
+        if r is odd: result <- (r - 1) * (r - 1) + c;
+        otherwise: result <- r * r - c + 1;

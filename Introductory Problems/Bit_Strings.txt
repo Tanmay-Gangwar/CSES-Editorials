@@ -1,0 +1,2 @@
+At every bit there are two possible values 0 or 1
+Therefore number of strings = power(2, n) mod (1e9 + 7)

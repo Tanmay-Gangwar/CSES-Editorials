@@ -1,0 +1,18 @@
+When sum of all the number is odd then there is no way to divide set into equal sums.
+Then sum is even then sets can be divided in the following manner:
+    If n is even:
+        1   2   3   4   5   6   7   8
+        |   |   |   |___|   |   |   |
+        |   |   |___________|   |   |
+        |   |___________________|   |
+        |___________________________|
+    
+    All pairs have same sum, therefore any of the two pairs can come in one set and remaining in other set.
+
+    If n is odd:
+        0   1   2   3   4   5   6   7
+        |   |   |   |___|   |   |   |
+        |   |   |___________|   |   |
+        |   |___________________|   |
+        |___________________________|
+    Similar to above case, any two pairs can come in one set and remaining in other set.

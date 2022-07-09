@@ -1,0 +1,4 @@
+There can be many solutions.
+One such solution:
+    if n is even: 2, 4, 6, ..., n, 1, 3, 5, 7, ..., n - 1
+    otherwise: 2, 4, 6, ..., n - 1, 1, 3, 5, ..., n

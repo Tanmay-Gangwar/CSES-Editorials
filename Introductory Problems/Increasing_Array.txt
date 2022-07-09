@@ -1,0 +1,4 @@
+Invariant:
+    Current number should be greater or equal to previous.
+    We can't decrease a number but can increase it.
+So if the current number is less than previous, increase it to previous.

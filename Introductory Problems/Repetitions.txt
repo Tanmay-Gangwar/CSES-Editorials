@@ -1,0 +1,3 @@
+Maintain maxStreak and current streak.
+If current character is same as previous, increase the current streak otherwise reset streak to 1
+maxStreak <- max(maxStreak, streak)

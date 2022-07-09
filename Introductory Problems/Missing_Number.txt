@@ -1,0 +1,3 @@
+Consider then case when all the numbers from 1 to n are present:
+    Sum of all the numbers = n * (n + 1) / 2
+Now one by one remove the numbers from the sum.

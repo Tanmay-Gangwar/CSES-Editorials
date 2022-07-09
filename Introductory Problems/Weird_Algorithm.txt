@@ -1,0 +1,3 @@
+Brute Force:
+    When n is even n <- n / 2
+    When n is odd n <- 3 * n + 1

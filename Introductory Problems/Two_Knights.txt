@@ -10,6 +10,6 @@ Knights can be placed in any way except the following two configurations:
 
 Therefore,
     Total squares, x <- n * n;
-    Total ways: nCr(x, 2)
-    Invalid ways: 8 * nCr(x - 1, 2)
-    Answer: nCr(x, 2) - 8 * nCr(x - 1, 2)
+    Total ways: x * (x - 1) / 2
+    Invalid ways: 4 * (n - 1) * (n - 2)
+    Answer: x * (x - 1) / 2 - 4 * (n - 1) * (n - 2)

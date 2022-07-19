@@ -13,16 +13,19 @@ int main(){
     cin.tie(0);
     cout.tie(0);
 
-    ll n, mod = 1e9 + 7;
-    cin >> n;
-    vector<ll> dp(n + 1);
-    dp[0] = 1;
-    for (ll i = 1; i <= n; i++){
-        for (ll j = 1; j <= 6; j++){
-            if (i >= j) dp[i] = (dp[i] + dp[i - j]) % mod;
+    ll a, b;
+    cin >> a >> b;
+    vector<vector<ll>> dp(a + 1, vector<ll>(b + 1, 1e18));
+    for (ll i = 1; i <= a; i++){
+        for (ll j = 1; j <= b; j++){
+            if (i == j) dp[i][j] = 0;
+            else{
+                for (ll k = 1; k < j; k++) dp[i][j] = min(dp[i][j], 1 + dp[i][k] + dp[i][j - k]);
+                for (ll k = 1; k < i; k++) dp[i][j] = min(dp[i][j], 1 + dp[k][j] + dp[i - k][j]);
+            }
         }
-    }    
-    cout << dp[n] << "\n";
+    }
+    cout << dp[a][b] << "\n";
 
     return 0;
 }

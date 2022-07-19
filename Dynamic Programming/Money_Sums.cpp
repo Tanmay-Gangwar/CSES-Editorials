@@ -13,16 +13,26 @@ int main(){
     cin.tie(0);
     cout.tie(0);
 
-    ll n, mod = 1e9 + 7;
+    ll n;
     cin >> n;
-    vector<ll> dp(n + 1);
-    dp[0] = 1;
-    for (ll i = 1; i <= n; i++){
-        for (ll j = 1; j <= 6; j++){
-            if (i >= j) dp[i] = (dp[i] + dp[i - j]) % mod;
+    vector<ll> a(n);
+    for (ll &x: a) cin >> x;
+    ll MX = 1e6;
+    vector<bool> dp(MX + 1);
+    dp[0] = true;
+    for (ll x: a){
+        for (ll i = MX; i >= 0; i--){
+            if (dp[i] && i + x <= MX) dp[i + x] = true;
         }
-    }    
-    cout << dp[n] << "\n";
+    }
+    ll cnt = 0;
+    for (ll i = 1; i <= MX; i++){
+        if (dp[i]) cnt++;
+    }
+    cout << cnt << "\n";
+    for (ll i = 1; i <= MX; i++){
+        if (dp[i]) cout << i << " ";
+    }
 
     return 0;
 }

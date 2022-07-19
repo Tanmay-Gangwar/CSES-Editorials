@@ -13,16 +13,22 @@ int main(){
     cin.tie(0);
     cout.tie(0);
 
-    ll n, mod = 1e9 + 7;
-    cin >> n;
-    vector<ll> dp(n + 1);
-    dp[0] = 1;
+    string a, b;
+    cin >> a >> b;
+    a = "#" + a;
+    b = "#" + b;
+    ll n = a.length();
+    ll m = b.length();
+    vector<vector<ll>> dp(n + 1, vector<ll>(m + 1));
+    for (ll i = 1; i <= n; i++) dp[i][0] = i;
+    for (ll j = 1; j <= m; j++) dp[0][j] = j;
     for (ll i = 1; i <= n; i++){
-        for (ll j = 1; j <= 6; j++){
-            if (i >= j) dp[i] = (dp[i] + dp[i - j]) % mod;
+        for (ll j = 1; j <= m; j++){
+            if (a[i] == b[j]) dp[i][j] = dp[i - 1][j - 1];
+            else dp[i][j] = min(1 + dp[i - 1][j - 1], min(1 + dp[i - 1][j], 1 + dp[i][j - 1]));
         }
-    }    
-    cout << dp[n] << "\n";
+    }
+    cout << dp[n][m] << "\n";
 
     return 0;
 }

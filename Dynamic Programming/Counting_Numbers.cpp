@@ -7,22 +7,29 @@ using namespace std;
 using ll = long long;
 using ld = long double;
 
+ll cnt(ll x){
+    if (x == 0) return 0;
+    string s = to_string(x);
+    reverse(s.begin(), s.end());
+    ll ans = 0, p = 1, n = s.length();
+    for (ll i = 0; i < n; i++){
+        if (i + 1 < n && s[i] > s[i + 1]) ans += max(s[i] - '1', 1) * p;
+        else ans += max(s[i] - '0', 1) * p;
+        p *= 9;
+    }
+    return ans;
+}
+
 
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
+    
 
-    ll n, mod = 1e9 + 7;
-    cin >> n;
-    vector<ll> dp(n + 1);
-    dp[0] = 1;
-    for (ll i = 1; i <= n; i++){
-        for (ll j = 1; j <= 6; j++){
-            if (i >= j) dp[i] = (dp[i] + dp[i - j]) % mod;
-        }
-    }    
-    cout << dp[n] << "\n";
+    ll a, b;
+    cin >> a >> b;
+    cout << cnt(b + 1) - cnt(a) << "\n";
 
     return 0;
 }

@@ -13,22 +13,23 @@ int main(){
     cin.tie(0);
     cout.tie(0);
 
-    ll mod = 1e9 + 7;
     ll n, m;
     cin >> n >> m;
     vector<ll> a(n);
     for (ll &x: a) cin >> x;
-    vector<vector<ll>> dp(n, vector<ll>(m + 2));
-    if (a[0]) dp[0][a[0]] = 1;
-    else for (ll i = 1; i <= m; i++) dp[0][i] = 1;
-    for (ll i = 1; i < n; i++){
-        if (a[i]) dp[i][a[i]] = (dp[i - 1][a[i] - 1] + dp[i - 1][a[i]] + dp[i - 1][a[i] + 1]) % mod;
-        else for (ll j = 1; j <= m; j++)
-                dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][j] + dp[i - 1][j + 1]) % mod;
+    vector<pair<ll, ll>> dp(1 << n, {n + 1, m + 1});
+    dp[0] = {0, m + 1};
+    for (ll i = 1; i < (1 << n); i++){
+        for (ll bit = 0; bit < n; bit++){
+            if ((i >> bit) & 1){
+                pair<ll, ll> temp = dp[(1 << bit) ^ i];
+                if (temp.second + a[bit] <= m) temp.second += a[bit];
+                else temp.first++, temp.second = a[bit];
+                dp[i] = min(dp[i], temp);
+            }
+        }
     }
-    ll ans = 0;
-    for (ll j = 1; j <= m; j++) ans = (ans + dp[n - 1][j]) % mod;
-    cout << ans << "\n";
+    cout << dp[(1 << n) - 1].first << "\n";
 
     return 0;
 }
